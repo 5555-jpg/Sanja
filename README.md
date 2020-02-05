@@ -1,169 +1,146 @@
 # Sanja
 backend development task
-# Ananke, A theme for [Hugo](http://gohugo.io/), a framework for building websites.
+# Mediumish Theme
 
-The intent of this theme is to provide a solid starting place for Hugo sites with basic features and include best practices for performance, accessibility, and rapid development.
+This theme for gohugo is a customized port based on the [Mediumish Jekyll-Theme](//github.com/wowthemesnet/mediumish-theme-jekyll) by [WowThemesNet](//github.com/wowthemesnet). The original theme ships with a few more features than this ported version but i also added features which the original version did not include.
 
-![screenshot](https://raw.githubusercontent.com/budparr/gohugo-theme-ananke/master/images/screenshot.png)
+See the [Demo](https://lgaida.github.io/mediumish-gohugo-theme-demo) and [Demo-Source](https://github.com/lgaida/mediumish-gohugo-theme-demo)
 
-[DEMO](https://gohugo-ananke-theme-demo.netlify.com/)
+![screenshot](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/screenshot.png)
 
-Features
-
-- Responsive
-- Accessible
-- Contact form
-- Custom Robots.txt (changes values based on environment)
-- Internal templates for meta data, google analytics, and DISQUS or COMMENTO comments
-- RSS Discovery
-- Table of Contents (must declare `toc: true` in post parameter)
-- Stackbit configuration ([Stackbit](https://www.stackbit.com))
-
-Also includes examples of Hugo Features or Functions:
-
-- Pagination (internal template)
-- Taxonomies
-- Archetypes
-- Custom shortcode
-- Related content
-- Hugo built-in menu
-- i18n
-- `with`
-- `HUGO_ENV`
-- `first`
-- `after`
-- `sort`
-- Site LanguageCode
-- `where`
-- Content Views
-- Partials
-- Template layouts (type "post" uses a special list template, single template,  and a content view)
-- Tags
-- `len`
-- Conditionals
-- `ge` (greater than or equal to)
-- `.Site.Params.mainSections` to avoid hard-coding "blog," etc. [[release note](https://github.com/spf13/hugo/blob/66ec6305f6cb450ddf9c489854146bac02f7dca1/docs/content/meta/release-notes.md#enhancements)]
-
-
-This theme uses the "Tachyons" CSS library. This will allow you to manipulate the design of the theme by changing class names in HTML without touching the original CSS files. For more information see the [Tachyons website](http://tachyons.io/).
-
-
+## Features
++ Landingpage
++ 404-Page
++ Posts
+    + tags can be used
+    + shareable via socialmedia
++ Custom pagination
++ Prev/Next-Links
++ Tag-Overview in Jumbotron
++ Integrations:
+    + Disqus Comments
+    + Google Analytics
+    + Mailchimp
 
 ## Installation
-
 Inside the folder of your Hugo site run:
 
-    $ git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
+    $ cd themes
+    $ git clone https://github.com/lgaida/mediumish-gohugo-theme
 
-For more information read the official [setup guide](//gohugo.io/overview/installing/) of Hugo.
-
-
-
-## Getting started
-
-After installing the theme successfully it requires a just a few more steps to get your site running.
+## Preface
+I recommend placing image files for your site config within the `static` folder of your gohugo website. This allows them to be easily referenced from the config.toml or post.md files. You may structure the files and folders within `static` however you'd like, with one exception: There must be a file named `jumbotron.jpg` present under the path `static/images` as it is referenced in the .css.
 
 
-### The config file
-
-Take a look inside the [`exampleSite`](https://github.com/budparr/gohugo-theme-ananke/tree/master/exampleSite) folder of this theme. You'll find a file called [`config.toml`](https://github.com/budparr/gohugo-theme-ananke/blob/master/exampleSite/config.toml). To use it, copy the [`config.toml`](https://github.com/budparr/gohugo-theme-ananke/blob/master/exampleSite/config.toml) in the root folder of your Hugo site. Feel free to change the strings in this theme.
-
-You may need to delete the line: `themesDir = "../.."`
-
-
-### Add comments
-
-To enable comments, add following to your config file:
-
-- DISQUS: `disqusShortname = YOURSHORTNAME`
-- COMMENTO:
-  ```
-  [params]
-    commentoEnable = true
-  ```
-
-### Change the hero background
-
-For any page or post you can add a featured image by including the local path in front matter (see content in the `exampleSite/content/_readme.md` file for examples): `featured_image: '/images/gohugo-default-sample-hero-image.jpg'`
-
-If you would like to hide the header text on the featured image on a page, set `omit_header_text` to `true`. See `exampleSite/content/contact.md` for an example.
-
-You don't need an image though. The default background color is black, but you can change the color, by changing the default color class in the config.toml file. Choose a background color from any on the [Tachyons](http://tachyons.io/docs/themes/skins/) library site, and preface it with "bg-"
-
-example: `background_color_class = "bg-blue"` or `background_color_class = "bg-gray"`
-
-
-
-### Activate the contact form
-
-This theme includes a shortcode for a contact form that you can add to any page (there is an example on the contact page in the exampleSite folder). One option is to use [formspree.io](//formspree.io/) as proxy to send the actual email. Each month, visitors can send you up to one thousand emails without incurring extra charges. Visit the Formspree site to get the "action" link and add it to your shortcode like this:
+## Post Example
+To create a simple post use the hugo new command as usual.
+This theme makes use of page bundles / page resource (see https://gohugo.io/content-management/page-bundles/).
+Place any image next to your post's index.md file and make sure it contains the keyword "cover" inside its name.
+This image will also be used for twitter and opengraph cards.
 
 ```
-{{< form-contact action="https://formspree.io/your@email.com" >}}
+hugo new blog/my-first-post/index.md
 ```
 
-### Update font or body classes
-
-The theme is set, by default, to use a near-white background color and the "Avenir" or serif typeface. You can change these in your config file with the `body_classes` parameter, like this:
-
+Creating a new post will create something like this:
 ```
+---
+title: "My first post"
+date: 2018-10-01T15:25:19+02:00
+publishdate: 2018-10-07T11:17:14+02:00
+lastmod: 2018-10-08T18:55:29+02:00
+tags: ["post", "interesting"]
+type: "post"
+comments: false
+---
+# Lorem ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean semper libero quis dictum dapibus. Nulla egestas vitae augue eu rutrum. Duis ullamcorper dictum ipsum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse tortor dui, fermentum non dapibus id, volutpat non odio.
+```
+
+`publishdate`: is displayed at the top of the single-view\
+`lastmod`: is displayed as a hint on the single-view\
+`tags`: are used as usual, just add the tags you want to use. They are displayed in the jumbotron on the list-view, and on the bottom of each single-view\
+`comments`: true/false to turn on/off disqus-comments
+
+
+## Static Content
+I added a customized layout for content of type "static", which means that posts in the folder "static" are displayed as standalone pages. I also disabled the list-layout for this folder.
+
+For example: to create an imprint, simply go with the following command and add your markdown-text.
+```
+hugo new static/imprint.md
+```
+
+## Configuration
+You should at least specify the following default params in your config.toml
+```toml
+baseURL = "http://yourdomain.com"
+languageCode = "en-us"
+title = "Mediumish"
+theme = "mediumish-gohugo-theme"
+summaryLength = 25
+copyright = "John Doe - All rights reserved"
+disqusShortname = "shortDisquis"
+googleAnalytics = "UA-1XXXXXXX1-X"
+```
+`title`: is displayed on the postlist and on each post as the title\
+`summaryLength`: feel free to play around with this\
+`copyright`: is displayed in the footer next to the copyright-logo\
+`disqusShortname`: provide your disqusShortname\
+`googleAnalytics`: provide your googleAnalytics-Code
+
+### General Params
+```toml
 [params]
-  body_classes = "avenir bg-near-white"
+  logo = "/images/icon.png"
+  description ="the clean blog!"
+  mailchimp = "you can provide a mailchimp-link here, see below"
+  mailprotect = "you can provide a protector-name here, see below"
 ```
+`logo`: is displayed in titlebar and alertbar\
+`description`: is displayed under title\
+`mailchimp` and `mailprotect`: provide links to a mailchimp-list and a mailchimp-protector id, the following screenshot should clarify. if not specified the alertbar for mail-subscription doesn't show up.
 
-which will give you a body class like this:
+![mailchimp-example](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/mailchimp.png)
 
+### Author Params
+```toml
+[params.author]
+  name = "John Doe"
+  thumbnail = "/images/author.jpg"
+  description = "Creator of this blog."
 ```
-<body class="avenir bg-near-white">
+![author-params](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/authorpost.png)
+
+### Landingpage Params
+```toml
+[params.index]
+  picture = "/images/author.jpg"
+  title = "John Doe"
+  subtitle = "I'm a unique placeholder. Working here and there!"
+  mdtext = '''Currently trying to get this blog running, still don't know what the blog will be about!\
+**This textblock is a demonstration of the mdtext-param.**\
+### This is a markdown heading'''
+  alertbar = true
 ```
-
-You can find a list of available typefaces [here](https://github.com/tachyons-css/tachyons/blob/v4.7.0/src/_font-family.css).
-
-And a list of background colors [here](https://github.com/tachyons-css/tachyons/blob/v4.7.0/src/_skins.css#L96).
-
-
-_n.b. in future versions we will likely separate the typeface and other body classes._
-
-
-### Custom CSS
-
-You can override the built-in css by using your own. Just put your own css files in the `static` directory of your website (the one in the theme directory also works but is not recommended) and modify the `custom_css` parameter in your config file. The path referenced in the parameter should be relative to the `static` folder. These css files will be added through the `header` partial after the built-in css file.
-
-For example, if your css files are `static/css/custom.css` and `static/css/custom2.css` then add the following to the config file:
-
+You can currently provide your username from `github`, `linkedin`, `xing`, `twitter`, `medium`. They will be displayed as icons on the landingpage.
+```toml
+[params.social]
+  github = "<username>"
+  linkedin = "<username>"
+  xing = "<username>"
+  medium = "<username>"
+  twitter = "<username>"
+  instagram = "<username>"
 ```
-    [params]
-      custom_css = ["css/custom.css","css/custom2.css"]
-```
+![landingpage-params](https://raw.githubusercontent.com/lgaida/mediumish-gohugo-theme/master/images/landing.png)
 
-### Show Reading Time and Word Count
-
-If you add a key of `show_reading_time` true to either the Config Params, a page or section's front matter, articles will show the reading time and word count.
-
-
-### Nearly finished
-
-In order to see your site in action, run Hugo's built-in local server.
-
-`$ hugo server`
-
-Now enter [`localhost:1313`](http://localhost:1313/) in the address bar of your browser.
-
-## Production
-
-To run in production (e.g. to have Google Analytics show up), run `HUGO_ENV=production` before your build command. For example:
-
-```
-HUGO_ENV=production hugo
-```
 
 ## Contributing
 
-If you find a bug or have an idea for a feature, feel free to use the [issue tracker](https://github.com/budparr/gohugo-theme-ananke/issues) to let me know.
+Feel free to use the [issue tracker](//github.com/lgaida/mediumish-gohugo-theme/issues) if you want to contribute in any possible way.
+You can also create a [pull request](//github.com/lgaida/mediumish-gohugo-theme/pulls) if you have already implemented a new feature that you want to share.
 
+## License
 
-
-
-TODO:
-
-- fix hard-coded link to [section](https://github.com/budparr/gohugo-theme-ananke/blob/master/layouts/index.html#L32)
+Like the original jekyll-theme this ported theme is released under the MIT License. Read more at the [License](//github.com/lgaida/mediumish-gohugo-theme/blob/master/LICENSE) itself.
